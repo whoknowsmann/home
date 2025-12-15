@@ -53,6 +53,19 @@ a:focus-visible {
   gap: 10px;
 }
 
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo-link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
 .logo {
   height: 32px;
   width: auto;
@@ -170,10 +183,19 @@ main {
 
 .book-card {
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 90px minmax(0, 1fr);
   gap: 12px;
   align-items: center;
   min-height: 140px;
+}
+
+.book-card h3 {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cover {

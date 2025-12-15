@@ -177,7 +177,7 @@ async function fetchGoodreadsRating(book) {
   }
 }
 
-function clampTitle(text, max = 70) {
+function clampTitle(text, max = 45) {
   if (!text) return '';
   return text.length > max ? `${text.slice(0, max - 1)}…` : text;
 }
