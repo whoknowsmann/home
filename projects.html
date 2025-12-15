@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — who knows, man</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/index.html" aria-label="who knows, man home">who knows, man</a>
+    <nav class="site-nav">
+      <a href="/writing.html">writing</a>
+      <a href="/bookshelf.html">bookshelf</a>
+      <a href="/projects.html" aria-current="page">projects</a>
+      <a href="/connect.html">contact</a>
+    </nav>
+    <button class="snow-toggle" id="snow-toggle" aria-pressed="true">snow: on</button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="tagline">Side quests, half-built gadgets, and experiments worth sharing.</p>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <h1>Projects</h1>
+        <p class="section-note">Quick proof-of-concept gallery. More to come.</p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Micro journal web app</h3>
+          <p>A tiny, offline-first scratchpad built in the browser. Sync-free by design.</p>
+        </article>
+        <article class="card">
+          <h3>Kitchen timer synth</h3>
+          <p>A pocketable synth that doubles as a family pizza timer. PCB layout in progress.</p>
+        </article>
+        <article class="card">
+          <h3>Neighborhood photo map</h3>
+          <p>Plotting film photos on a hand-drawn map, geocoded the analog way.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <canvas id="snow-canvas" class="snow-canvas" aria-hidden="true"></canvas>
+  <script src="js/main.js"></script>
+</body>
+</html>
