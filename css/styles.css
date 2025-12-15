@@ -275,6 +275,20 @@ main {
   line-height: 1.5;
 }
 
+.read-more {
+  background: none;
+  border: none;
+  color: var(--accent);
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.read-more:hover,
+.read-more:focus-visible {
+  text-decoration: underline;
+}
+
 .modal-ratings ul {
   list-style: none;
   padding: 0;

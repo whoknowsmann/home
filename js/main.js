@@ -15,6 +15,24 @@ let modalTitle;
 let modalAuthor;
 let modalDescription;
 let modalRatings;
+let modalReadMore;
+
+function stripTags(text) {
+  const temp = document.createElement('div');
+  temp.innerHTML = text || '';
+  return (temp.textContent || '').trim();
+}
+
+function buildExcerpt(text, sentenceLimit = 2) {
+  const sentences = text.split(/(?<=[.!?])\s+/).filter(Boolean);
+
+  if (sentences.length <= sentenceLimit) {
+    return { excerpt: text, hasMore: false };
+  }
+
+  const excerpt = sentences.slice(0, sentenceLimit).join(' ');
+  return { excerpt, full: sentences.join(' '), hasMore: true };
+}
 
 function resizeCanvas() {
   if (!snowCanvas) return;
@@ -200,7 +218,25 @@ function ensureModal() {
   modalRatings = document.createElement('div');
   modalRatings.className = 'modal-ratings';
 
-  details.append(modalTitle, modalAuthor, modalDescription, modalRatings);
+  modalReadMore = document.createElement('button');
+  modalReadMore.type = 'button';
+  modalReadMore.className = 'read-more';
+  modalReadMore.textContent = '…read more';
+  modalReadMore.hidden = true;
+
+  modalReadMore.addEventListener('click', () => {
+    const full = modalDescription.dataset.full;
+    const current = modalDescription.textContent;
+    if (!full || current === full) {
+      modalDescription.textContent = modalDescription.dataset.excerpt || current;
+      modalReadMore.textContent = '…read more';
+    } else {
+      modalDescription.textContent = full;
+      modalReadMore.textContent = 'show less';
+    }
+  });
+
+  details.append(modalTitle, modalAuthor, modalDescription, modalReadMore, modalRatings);
   modalBody.append(modalCover, details);
   modalContent.append(modalClose, modalBody);
   modal.append(modalContent);
@@ -226,8 +262,17 @@ async function openBookModal(book) {
   ensureModal();
   modalTitle.textContent = book.title;
   modalAuthor.textContent = book.author || '';
-  modalDescription.textContent =
-    book.description || 'No description yet. ISBNs should pull one soon.';
+
+  const cleanDescription = stripTags(
+    book.description || 'No description yet. ISBNs should pull one soon.'
+  );
+  const { excerpt, full, hasMore } = buildExcerpt(cleanDescription, 2);
+
+  modalDescription.textContent = excerpt;
+  modalDescription.dataset.excerpt = excerpt;
+  modalDescription.dataset.full = full || excerpt;
+  modalReadMore.hidden = !hasMore;
+  modalReadMore.textContent = hasMore ? '…read more' : '';
 
   modalCover.src = book.cover;
   modalCover.alt = `${book.title} cover`;
