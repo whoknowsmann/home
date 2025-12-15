@@ -354,10 +354,20 @@ function renderPosts(posts) {
   writingList.innerHTML = '';
   posts.forEach((post) => {
     const card = document.createElement('a');
-    card.className = 'card';
+    card.className = 'card post-card';
     card.href = post.url || '#';
-    card.target = post.url ? '_blank' : '_self';
-    card.rel = post.url ? 'noreferrer' : '';
+
+    if (post.image) {
+      const thumb = document.createElement('img');
+      thumb.className = 'post-thumb';
+      thumb.loading = 'lazy';
+      thumb.alt = `${post.title} photo`;
+      thumb.src = post.image;
+      card.append(thumb);
+    }
+
+    const body = document.createElement('div');
+    body.className = 'post-card-body';
 
     const title = document.createElement('h3');
     title.textContent = post.title;
@@ -365,7 +375,8 @@ function renderPosts(posts) {
     const summary = document.createElement('p');
     summary.textContent = post.summary;
 
-    card.append(title, summary);
+    body.append(title, summary);
+    card.append(body);
     writingList.append(card);
   });
 }

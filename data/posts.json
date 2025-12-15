@@ -1,20 +1,23 @@
 [
   {
-    "title": "Notes on making room for boredom",
-    "summary": "Trying to leave a little white space in a calendar that keeps filling itself.",
-    "slug": "boredom-notes",
-    "url": "#"
+    "title": "Cardboard spaceship afternoons",
+    "summary": "Building a mission control out of duct tape, markers, and whatever boxes survived recycling day.",
+    "slug": "cardboard-spaceship",
+    "url": "/posts/cardboard-spaceship.html",
+    "image": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=80"
   },
   {
-    "title": "Wrestling with analog synths",
-    "summary": "Patching cables until something buzzing and imperfect appears.",
-    "slug": "analog-synths",
-    "url": "#"
+    "title": "Disposable camera morning walks",
+    "summary": "One roll, one route, and a promise to print the photos instead of letting them live in the cloud.",
+    "slug": "disposable-morning-walks",
+    "url": "/posts/disposable-morning-walks.html",
+    "image": "https://images.unsplash.com/photo-1526178613552-1a1ef0b9b3f1?auto=format&fit=crop&w=1200&q=80"
   },
   {
-    "title": "Library runs with the kids",
-    "summary": "A log of picture books, sticker trades, and the smell of old carpet.",
-    "slug": "library-runs",
-    "url": "#"
+    "title": "Notebook stack rotation",
+    "summary": "Three notebooks in play: one for sketching, one for logging, one for future me to laugh at.",
+    "slug": "notebook-stack",
+    "url": "/posts/notebook-stack.html",
+    "image": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80"
   }
 ]
