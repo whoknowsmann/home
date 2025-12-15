@@ -2,16 +2,18 @@ const booksGrid = document.getElementById('books-grid');
 const writingList = document.getElementById('writing-list');
 const snowToggle = document.getElementById('snow-toggle');
 const snowCanvas = document.getElementById('snow-canvas');
-const ctx = snowCanvas.getContext('2d');
+const ctx = snowCanvas ? snowCanvas.getContext('2d') : null;
 let snowflakes = [];
 let snowActive = true;
 
 function resizeCanvas() {
+  if (!snowCanvas) return;
   snowCanvas.width = window.innerWidth;
   snowCanvas.height = window.innerHeight;
 }
 
 function createSnowflakes(count = 120) {
+  if (!snowCanvas) return;
   snowflakes = Array.from({ length: count }, () => ({
     x: Math.random() * snowCanvas.width,
     y: Math.random() * snowCanvas.height,
@@ -22,6 +24,7 @@ function createSnowflakes(count = 120) {
 }
 
 function drawSnow() {
+  if (!snowCanvas || !ctx) return;
   if (!snowActive) return;
   ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
 
@@ -43,6 +46,7 @@ function drawSnow() {
 }
 
 function toggleSnow() {
+  if (!snowToggle) return;
   snowActive = !snowActive;
   snowToggle.setAttribute('aria-pressed', String(snowActive));
   snowToggle.textContent = snowActive ? 'snow: on' : 'snow: off';
@@ -117,23 +121,33 @@ function renderPosts(posts) {
 }
 
 function init() {
-  resizeCanvas();
-  createSnowflakes();
-  drawSnow();
-
-  snowToggle.addEventListener('click', toggleSnow);
-  window.addEventListener('resize', () => {
+  if (snowCanvas && snowToggle) {
     resizeCanvas();
     createSnowflakes();
-  });
+    drawSnow();
 
-  fetchJSON('data/books.json').then(renderBooks).catch((err) => {
-    booksGrid.innerHTML = `<p class="meta">${err.message}</p>`;
-  });
+    snowToggle.addEventListener('click', toggleSnow);
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createSnowflakes();
+    });
+  }
 
-  fetchJSON('data/posts.json').then(renderPosts).catch((err) => {
-    writingList.innerHTML = `<p class="meta">${err.message}</p>`;
-  });
+  if (booksGrid) {
+    fetchJSON('data/books.json')
+      .then(renderBooks)
+      .catch((err) => {
+        booksGrid.innerHTML = `<p class="meta">${err.message}</p>`;
+      });
+  }
+
+  if (writingList) {
+    fetchJSON('data/posts.json')
+      .then(renderPosts)
+      .catch((err) => {
+        writingList.innerHTML = `<p class="meta">${err.message}</p>`;
+      });
+  }
 }
 
 init();

@@ -121,6 +121,14 @@ main {
   font-size: 14px;
 }
 
+.section-footer {
+  margin-top: 12px;
+}
+
+.section-footer .meta {
+  text-decoration: none;
+}
+
 .card-grid,
 .book-grid,
 .connect-grid {
