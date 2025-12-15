@@ -11,6 +11,11 @@ Tiny personal corner of the internet. Static files, scribbled logo, books and po
    ```
 3. Visit [http://localhost:3000](http://localhost:3000) and click around.
 
+### Swap in new books or posts
+
+- All the lists live in `data/`. Add a new object to `data/books.json` or `data/posts.json` and reload the page.
+- A book entry is just `{ "id": "123", "title": "Your Book", "author": "You" }`. Use `isbn` instead of `id` if you want Open Library to try a cover lookup.
+
 ## Ship it to Vercel
 
 - `npm i -g vercel` if you want the CLI. Or use the dashboard; either way is fine.

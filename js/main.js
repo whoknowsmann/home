@@ -71,10 +71,11 @@ function renderBooks(books) {
     card.className = 'card book-card';
 
     const cover = document.createElement('img');
+    const coverId = book.isbn || book.id;
     cover.className = 'cover';
     cover.alt = `${book.title} cover`;
     cover.loading = 'lazy';
-    cover.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`;
+    cover.src = coverId ? `https://covers.openlibrary.org/b/isbn/${coverId}-L.jpg` : 'assets/logo.svg';
     cover.onerror = () => {
       cover.onerror = null;
       cover.src = 'assets/logo.svg';
@@ -88,13 +89,21 @@ function renderBooks(books) {
 
     const meta = document.createElement('p');
     meta.className = 'meta';
-    meta.textContent = `${book.author} · ISBN ${book.isbn}`;
+    const bits = [];
+    if (book.author) bits.push(book.author);
+    if (book.status) bits.push(book.status);
+    if (coverId) bits.push(`ID ${coverId}`);
+    meta.textContent = bits.join(' · ');
 
-    const status = document.createElement('span');
-    status.className = 'status';
-    status.textContent = book.status;
+    const status = book.status ? document.createElement('span') : null;
+    if (status) {
+      status.className = 'status';
+      status.textContent = book.status;
+      body.append(title, meta, status);
+    } else {
+      body.append(title, meta);
+    }
 
-    body.append(title, meta, status);
     card.append(cover, body);
     booksGrid.append(card);
   });
