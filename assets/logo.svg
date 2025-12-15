@@ -1,0 +1,9 @@
+<svg width="360" height="200" viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">who knows, man logo</title>
+  <desc id="desc">Handwritten wordmark reading who knows, man on a warm paper background.</desc>
+  <rect width="360" height="200" rx="22" fill="#f6f1e3"/>
+  <g fill="#111" font-family="'Kalam', 'Comic Sans MS', 'Segoe Script', cursive" font-size="48" font-weight="700" letter-spacing="0.5">
+    <text x="32" y="90">who knows,</text>
+    <text x="32" y="145">man.</text>
+  </g>
+</svg>
