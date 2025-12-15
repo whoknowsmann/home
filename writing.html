@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing — who knows, man</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo-wrap">
+      <img src="assets/logo.svg" alt="who knows, man" class="logo" loading="lazy">
+      <span class="logo-fallback">who knows, man</span>
+    </div>
+    <nav class="site-nav">
+      <a href="/index.html">home</a>
+      <a href="/writing.html" aria-current="page">writing</a>
+      <a href="/bookshelf.html">bookshelf</a>
+      <a href="/connect.html">connect</a>
+    </nav>
+    <button class="snow-toggle" id="snow-toggle" aria-pressed="true">snow: on</button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="tagline">All the scribbles, drafts, and ideas hanging out in one place.</p>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <h1>Writing</h1>
+        <p class="section-note">A running list of posts, notes, and experiments.</p>
+      </div>
+      <div id="writing-list" class="card-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <canvas id="snow-canvas" class="snow-canvas" aria-hidden="true"></canvas>
+  <script src="js/main.js"></script>
+</body>
+</html>
