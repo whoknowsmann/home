@@ -1,33 +1,20 @@
 [
   {
-    "id": "15839976",
-    "title": "Red Rising (Red Rising Saga, #1)",
-    "author": "Pierce Brown",
-    "featured": true
-  },
-  { "id": "100054", "title": "Tigana", "author": "Guy Gavriel Kay", "featured": true },
-  {
-    "id": "3360734",
-    "title": "Wind and Truth (The Stormlight Archive, #5)",
-    "author": "Brandon Sanderson",
-    "featured": true
+    "title": "A Small Place",
+    "author": "Jamaica Kincaid",
+    "isbn": "0374527075",
+    "status": "Reading"
   },
   {
-    "id": "26601086",
-    "title": "The Complete Poppy War Trilogy: The Poppy War, The Dragon Republic, The Burning God",
-    "author": "R.F. Kuang",
-    "featured": true
+    "title": "The Left Hand of Darkness",
+    "author": "Ursula K. Le Guin",
+    "isbn": "0441478123",
+    "status": "Re-reading"
   },
-  { "id": "6897096", "title": "The Blade Itself (The First Law, #1)", "author": "Joe Abercrombie", "featured": true },
-  { "id": "72135949", "title": "Piranesi", "author": "Susanna Clarke" },
-  { "id": "20249723", "title": "The Name of the Wind (The Kingkiller Chronicle, #1)", "author": "Patrick Rothfuss" },
-  { "id": "24547124", "title": "The Way of Kings (The Stormlight Archive, #1)", "author": "Brandon Sanderson" },
-  { "id": "227405589", "title": "The Lost Metal (Mistborn, #7)", "author": "Brandon Sanderson" },
-  { "id": "30622853", "title": "The Shadow of the Torturer (The Book of the New Sun, #1)", "author": "Gene Wolfe" },
   {
-    "id": "1232242454",
-    "title": "Mistborn: The Final Empire (Mistborn #1)",
-    "author": "Brandon Sanderson"
-  },
-  { "id": "6538036", "title": "Lirael (Abhorsen, #2)", "author": "Garth Nix" }
+    "title": "Four Thousand Weeks",
+    "author": "Oliver Burkeman",
+    "isbn": "0374159122",
+    "status": "On deck"
+  }
 ]
