@@ -5,6 +5,7 @@ const snowCanvas = document.getElementById('snow-canvas');
 const ctx = snowCanvas ? snowCanvas.getContext('2d') : null;
 let snowflakes = [];
 let snowActive = true;
+const lookupCache = new Map();
 
 function resizeCanvas() {
   if (!snowCanvas) return;
@@ -64,9 +65,53 @@ function fetchJSON(path) {
   });
 }
 
-function renderBooks(books) {
+async function lookupBookData(book) {
+  const cacheKey = `${book.title}|${book.author || ''}`;
+  if (lookupCache.has(cacheKey)) return lookupCache.get(cacheKey);
+
+  const query = encodeURIComponent(`${book.title} ${book.author || ''}`.trim());
+  const googleUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=1`;
+
+  let info = { title: book.title, author: book.author };
+
+  try {
+    const res = await fetch(googleUrl);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.items && data.items.length) {
+        const volume = data.items[0].volumeInfo;
+        info.title = volume.title || info.title;
+        info.author = (volume.authors && volume.authors.join(', ')) || info.author;
+        const cover = volume.imageLinks?.thumbnail || volume.imageLinks?.smallThumbnail;
+        if (cover) info.cover = cover.replace('http://', 'https://');
+      }
+    }
+  } catch (err) {
+    console.warn('Book lookup failed', err);
+  }
+
+  if (!info.cover) {
+    const coverId = book.isbn || book.id;
+    info.cover = coverId
+      ? `https://covers.openlibrary.org/b/isbn/${coverId}-L.jpg`
+      : 'assets/logo.svg';
+  }
+
+  lookupCache.set(cacheKey, info);
+  return info;
+}
+
+async function renderBooks(books) {
   booksGrid.innerHTML = '';
-  books.forEach((book) => {
+
+  const enriched = await Promise.all(
+    books.map(async (book) => {
+      const info = await lookupBookData(book);
+      return { ...book, ...info };
+    })
+  );
+
+  enriched.forEach((book) => {
     const card = document.createElement('article');
     card.className = 'card book-card';
 
@@ -75,7 +120,7 @@ function renderBooks(books) {
     cover.className = 'cover';
     cover.alt = `${book.title} cover`;
     cover.loading = 'lazy';
-    cover.src = coverId ? `https://covers.openlibrary.org/b/isbn/${coverId}-L.jpg` : 'assets/logo.svg';
+    cover.src = book.cover;
     cover.onerror = () => {
       cover.onerror = null;
       cover.src = 'assets/logo.svg';
@@ -143,8 +188,16 @@ function init() {
   }
 
   if (booksGrid) {
+    const limit = booksGrid.dataset.limit ? Number(booksGrid.dataset.limit) : null;
+    const featuredOnly = booksGrid.dataset.featured === 'true';
+
     fetchJSON('data/books.json')
-      .then(renderBooks)
+      .then((books) => {
+        let selection = books;
+        if (featuredOnly) selection = selection.filter((book) => book.featured);
+        if (limit) selection = selection.slice(0, limit);
+        return renderBooks(selection);
+      })
       .catch((err) => {
         booksGrid.innerHTML = `<p class="meta">${err.message}</p>`;
       });

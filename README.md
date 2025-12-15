@@ -14,7 +14,8 @@ Tiny personal corner of the internet. Static files, scribbled logo, books and po
 ### Swap in new books or posts
 
 - All the lists live in `data/`. Add a new object to `data/books.json` or `data/posts.json` and reload the page.
-- A book entry is just `{ "id": "123", "title": "Your Book", "author": "You" }`. Use `isbn` instead of `id` if you want Open Library to try a cover lookup.
+- A book entry is just `{ "id": "123", "title": "Your Book", "author": "You" }`. Google Books gets poked with the title/author to find a cover; if you have a reliable ISBN, add an `isbn` field as a backup for Open Library.
+- Want something to surface on the homepage shelf? Add `"featured": true` to that book.
 
 ## Ship it to Vercel
 
