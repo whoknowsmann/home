@@ -1,1 +1,24 @@
-who knows, man
+# who knows, man
+
+Tiny personal corner of the internet. Static files, scribbled logo, books and posts pulled from JSON. No frameworks to babysit.
+
+## How to poke at it locally
+
+1. Open a terminal in the repo root.
+2. Run a quick static server. Python works fine:
+   ```bash
+   python3 -m http.server 3000
+   ```
+3. Visit [http://localhost:3000](http://localhost:3000) and click around.
+
+## Ship it to Vercel
+
+- `npm i -g vercel` if you want the CLI. Or use the dashboard; either way is fine.
+- From the repo root, `vercel` and accept the defaults. It detects a static site, no build step needed.
+- When you're ready for production: `vercel --prod`.
+
+## Pointing whoknowsman.com
+
+- In the Vercel project, go to **Settings → Domains** and add `whoknowsman.com` (and `www` if you want it).
+- If the domain lives elsewhere, add the A/CNAME records Vercel gives you or switch nameservers to them.
+- Wait a bit for DNS to catch up; HTTPS is automatic once it resolves.
