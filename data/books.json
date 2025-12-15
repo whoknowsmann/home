@@ -1,0 +1,20 @@
+[
+  {
+    "title": "A Small Place",
+    "author": "Jamaica Kincaid",
+    "isbn": "0374527075",
+    "status": "Reading"
+  },
+  {
+    "title": "The Left Hand of Darkness",
+    "author": "Ursula K. Le Guin",
+    "isbn": "0441478123",
+    "status": "Re-reading"
+  },
+  {
+    "title": "Four Thousand Weeks",
+    "author": "Oliver Burkeman",
+    "isbn": "0374159122",
+    "status": "On deck"
+  }
+]
