@@ -6,6 +6,15 @@ const ctx = snowCanvas ? snowCanvas.getContext('2d') : null;
 let snowflakes = [];
 let snowActive = true;
 const lookupCache = new Map();
+const ratingCache = new Map();
+let modal;
+let modalContent;
+let modalClose;
+let modalCover;
+let modalTitle;
+let modalAuthor;
+let modalDescription;
+let modalRatings;
 
 function resizeCanvas() {
   if (!snowCanvas) return;
@@ -86,10 +95,33 @@ async function lookupBookData(book) {
         info.author = (volume.authors && volume.authors.join(', ')) || info.author;
         const cover = volume.imageLinks?.thumbnail || volume.imageLinks?.smallThumbnail;
         if (cover) info.cover = cover.replace('http://', 'https://');
+        if (volume.description) info.description = volume.description;
       }
     }
   } catch (err) {
     console.warn('Book lookup failed', err);
+  }
+
+  if (!info.description && book.isbn) {
+    try {
+      const search = await fetch(
+        `https://openlibrary.org/search.json?isbn=${encodeURIComponent(book.isbn)}`
+      );
+      if (search.ok) {
+        const results = await search.json();
+        if (results.docs && results.docs.length && results.docs[0].key) {
+          const workKey = results.docs[0].key;
+          const workRes = await fetch(`https://openlibrary.org${workKey}.json`);
+          if (workRes.ok) {
+            const work = await workRes.json();
+            if (typeof work.description === 'string') info.description = work.description;
+            if (work.description?.value) info.description = work.description.value;
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Open Library lookup failed', err);
+    }
   }
 
   if (!info.cover) {
@@ -101,6 +133,119 @@ async function lookupBookData(book) {
 
   lookupCache.set(cacheKey, info);
   return info;
+}
+
+async function fetchGoodreadsRating(book) {
+  const goodreadsId = book.goodreadsId || book.id;
+  if (!goodreadsId) return null;
+  if (ratingCache.has(goodreadsId)) return ratingCache.get(goodreadsId);
+
+  const ratingUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
+    `https://www.goodreads.com/book/show/${goodreadsId}`
+  )}`;
+
+  try {
+    const res = await fetch(ratingUrl);
+    if (!res.ok) throw new Error('Could not load Goodreads page');
+    const html = await res.text();
+    const match = html.match(/itemprop="ratingValue"[^>]*>([0-9.]+)/);
+    const rating = match ? Number(match[1]).toFixed(2) : null;
+    ratingCache.set(goodreadsId, rating);
+    return rating;
+  } catch (err) {
+    console.warn('Goodreads rating lookup failed', err);
+    ratingCache.set(goodreadsId, null);
+    return null;
+  }
+}
+
+function clampTitle(text, max = 70) {
+  if (!text) return '';
+  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+}
+
+function ensureModal() {
+  if (modal) return;
+
+  modal = document.createElement('div');
+  modal.className = 'modal';
+  modal.id = 'book-modal';
+
+  modalContent = document.createElement('div');
+  modalContent.className = 'modal-content card';
+
+  modalClose = document.createElement('button');
+  modalClose.className = 'modal-close';
+  modalClose.setAttribute('aria-label', 'Close dialog');
+  modalClose.textContent = '×';
+
+  const modalBody = document.createElement('div');
+  modalBody.className = 'modal-body';
+
+  modalCover = document.createElement('img');
+  modalCover.className = 'modal-cover';
+  modalCover.alt = '';
+  modalCover.loading = 'lazy';
+
+  const details = document.createElement('div');
+  details.className = 'modal-details';
+
+  modalTitle = document.createElement('h3');
+  modalAuthor = document.createElement('p');
+  modalAuthor.className = 'meta';
+
+  modalDescription = document.createElement('p');
+  modalDescription.className = 'modal-description';
+
+  modalRatings = document.createElement('div');
+  modalRatings.className = 'modal-ratings';
+
+  details.append(modalTitle, modalAuthor, modalDescription, modalRatings);
+  modalBody.append(modalCover, details);
+  modalContent.append(modalClose, modalBody);
+  modal.append(modalContent);
+  document.body.append(modal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+}
+
+function closeModal() {
+  if (!modal) return;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+async function openBookModal(book) {
+  ensureModal();
+  modalTitle.textContent = book.title;
+  modalAuthor.textContent = book.author || '';
+  modalDescription.textContent =
+    book.description || 'No description yet. ISBNs should pull one soon.';
+
+  modalCover.src = book.cover;
+  modalCover.alt = `${book.title} cover`;
+  modalRatings.innerHTML = '';
+
+  const grRating = await fetchGoodreadsRating(book);
+  const wkRating =
+    typeof book.wkRating === 'number' ? `${book.wkRating.toFixed(1)} / 5` : 'Not rated yet';
+
+  const ratingList = document.createElement('ul');
+  ratingList.innerHTML = `
+    <li><strong>Goodreads:</strong> ${grRating ? `${grRating} / 5` : 'N/A'}</li>
+    <li><strong>who knows, man:</strong> ${wkRating}</li>
+  `;
+
+  modalRatings.append(ratingList);
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
 async function renderBooks(books) {
@@ -116,6 +261,7 @@ async function renderBooks(books) {
   enriched.forEach((book) => {
     const card = document.createElement('article');
     card.className = 'card book-card';
+    card.tabIndex = 0;
 
     const cover = document.createElement('img');
     cover.className = 'cover';
@@ -131,7 +277,7 @@ async function renderBooks(books) {
 
     const body = document.createElement('div');
     const title = document.createElement('h3');
-    title.textContent = book.title;
+    title.textContent = clampTitle(book.title);
 
     const meta = document.createElement('p');
     meta.className = 'meta';
@@ -151,6 +297,10 @@ async function renderBooks(books) {
     }
 
     card.append(cover, body);
+    card.addEventListener('click', () => openBookModal(book));
+    card.addEventListener('keypress', (evt) => {
+      if (evt.key === 'Enter') openBookModal(book);
+    });
     booksGrid.append(card);
   });
 }

@@ -14,7 +14,7 @@ Tiny personal corner of the internet. Static files, scribbled logo, books and po
 ### Swap in new books or posts
 
 - All the lists live in `data/`. Add a new object to `data/books.json` or `data/posts.json` and reload the page.
-- A book entry is just `{ "title": "Your Book", "author": "You", "isbn": "978..." }`. Google Books gets poked with the ISBN (or title/author) to find a cover; Open Library uses the ISBN as a backup.
+- A book entry is just `{ "title": "Your Book", "author": "You", "isbn": "978..." }`. Google Books gets poked with the ISBN (or title/author) to find a cover; Open Library uses the ISBN as a backup. Add `"wkRating": 4.5` if you want to show your own rating, and the Goodreads ID can sit in `"id"` to power the community rating lookup.
 - Want something to surface on the homepage shelf? Add `"featured": true` to that book.
 
 ## Ship it to Vercel

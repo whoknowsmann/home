@@ -4,21 +4,24 @@
     "title": "Red Rising (Red Rising Saga, #1)",
     "author": "Pierce Brown",
     "isbn": "9780345539809",
-    "featured": true
+    "featured": true,
+    "wkRating": 4.5
   },
   {
     "id": "104089",
     "title": "Tigana",
     "author": "Guy Gavriel Kay",
     "isbn": "9780451456732",
-    "featured": true
+    "featured": true,
+    "wkRating": 4.7
   },
   {
     "id": "203608754",
     "title": "Wind and Truth (The Stormlight Archive, #5)",
     "author": "Brandon Sanderson",
     "isbn": "9781250313697",
-    "featured": true
+    "featured": true,
+    "wkRating": 4.9
   },
   {
     "id": "124950508",
@@ -138,12 +141,6 @@
     "title": "Elantris (Elantris, #1)",
     "author": "Brandon Sanderson",
     "isbn": "9780765350374"
-  },
-  {
-    "id": "77197",
-    "title": "Assassin's Apprentice (Farseer Trilogy, #1)",
-    "author": "Robin Hobb",
-    "isbn": "9780553566635"
   },
   {
     "id": "2767793",
