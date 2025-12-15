@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect — who knows, man</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo-link" href="/index.html" aria-label="who knows, man home">
+      <div class="logo-wrap">
+        <img src="assets/logo.svg" alt="who knows, man" class="logo" loading="lazy">
+        <span class="logo-fallback">who knows, man</span>
+      </div>
+    </a>
+    <nav class="site-nav">
+      <a href="/index.html">home</a>
+      <a href="/writing.html">writing</a>
+      <a href="/bookshelf.html">bookshelf</a>
+      <a href="/connect.html" aria-current="page">connect</a>
+    </nav>
+    <button class="snow-toggle" id="snow-toggle" aria-pressed="true">snow: on</button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="tagline">Say hi, share a playlist, or drop a book rec.</p>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <h1>Connect</h1>
+        <p class="section-note">Pick your lane. I read them all eventually.</p>
+      </div>
+      <div class="card-grid connect-grid">
+        <a class="card" href="mailto:hello@whoknowsman.com">Email</a>
+        <a class="card" href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="card" href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+      </div>
+    </section>
+  </main>
+
+  <canvas id="snow-canvas" class="snow-canvas" aria-hidden="true"></canvas>
+  <script src="js/main.js"></script>
+</body>
+</html>
