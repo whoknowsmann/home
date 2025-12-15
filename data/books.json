@@ -1,20 +1,286 @@
 [
   {
-    "title": "A Small Place",
-    "author": "Jamaica Kincaid",
-    "isbn": "0374527075",
-    "status": "Reading"
+    "id": "15839976",
+    "title": "Red Rising (Red Rising Saga, #1)",
+    "author": "Pierce Brown",
+    "isbn": "9780345539809",
+    "featured": true
   },
   {
-    "title": "The Left Hand of Darkness",
-    "author": "Ursula K. Le Guin",
-    "isbn": "0441478123",
-    "status": "Re-reading"
+    "id": "104089",
+    "title": "Tigana",
+    "author": "Guy Gavriel Kay",
+    "isbn": "9780451456732",
+    "featured": true
   },
   {
-    "title": "Four Thousand Weeks",
-    "author": "Oliver Burkeman",
-    "isbn": "0374159122",
-    "status": "On deck"
+    "id": "203608754",
+    "title": "Wind and Truth (The Stormlight Archive, #5)",
+    "author": "Brandon Sanderson",
+    "isbn": "9781250313697",
+    "featured": true
+  },
+  {
+    "id": "124950508",
+    "title": "The Complete Poppy War Trilogy: The Poppy War, The Dragon Republic, The Burning God",
+    "author": "R.F. Kuang"
+  },
+  {
+    "id": "6569831",
+    "title": "Furies of Calderon (Codex Alera, #1)",
+    "author": "Jim Butcher",
+    "isbn": "9780441012688"
+  },
+  {
+    "id": "50009069",
+    "title": "The Blade Itself (The First Law, #1)",
+    "author": "Joe Abercrombie",
+    "isbn": "9781591025944"
+  },
+  {
+    "id": "52702097",
+    "title": "Piranesi",
+    "author": "Susanna Clarke",
+    "isbn": "9781635575637"
+  },
+  {
+    "id": "17250966",
+    "title": "Rhythm of War (The Stormlight Archive, #4)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765326386"
+  },
+  {
+    "id": "208033237",
+    "title": "Oathbringer (The Stormlight Archive, #3)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765326379"
+  },
+  {
+    "id": "208033371",
+    "title": "Words of Radiance (The Stormlight Archive, #2)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765326362"
+  },
+  {
+    "id": "50863421",
+    "title": "A Game of Thrones (A Song of Ice and Fire, #1)",
+    "author": "George R.R. Martin",
+    "isbn": "9780553573404"
+  },
+  {
+    "id": "123206298",
+    "title": "Murtagh (The Inheritance Cycle, #5)",
+    "author": "Christopher Paolini",
+    "isbn": "9781984894861"
+  },
+  {
+    "id": "36454667",
+    "title": "Empire of Silence (The Sun Eater, #1)",
+    "author": "Christopher Ruocchio",
+    "isbn": "9780756410261"
+  },
+  {
+    "id": "10803121",
+    "title": "The Alloy of Law (Mistborn, #4)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765319616"
+  },
+  {
+    "id": "40604556",
+    "title": "Red Seas Under Red Skies (Gentleman Bastard, #2)",
+    "author": "Scott Lynch",
+    "isbn": "9780553588958"
+  },
+  {
+    "id": "228665",
+    "title": "The Eye of the World (The Wheel of Time, #1)",
+    "author": "Robert Jordan",
+    "isbn": "9780812511819"
+  },
+  {
+    "id": "60211",
+    "title": "The Shadow of the Torturer",
+    "author": "Gene Wolfe",
+    "isbn": "9780312890179"
+  },
+  {
+    "id": "58416952",
+    "title": "The Will of the Many (Hierarchy, #1)",
+    "author": "James Islington",
+    "isbn": "9781645660565"
+  },
+  {
+    "id": "7664041",
+    "title": "Inheritance (The Inheritance Cycle, #4)",
+    "author": "Christopher Paolini",
+    "isbn": "9780375867828"
+  },
+  {
+    "id": "45978",
+    "title": "Eldest (The Inheritance Cycle, #2)",
+    "author": "Christopher Paolini",
+    "isbn": "9780375826702"
+  },
+  {
+    "id": "29588376",
+    "title": "The Lies of Locke Lamora (Gentleman Bastard, #1)",
+    "author": "Scott Lynch",
+    "isbn": "9780553588941"
+  },
+  {
+    "id": "53463056",
+    "title": "The Way of Kings (The Stormlight Archive, #1)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765326355"
+  },
+  {
+    "id": "68427",
+    "title": "Elantris (Elantris, #1)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765350374"
+  },
+  {
+    "id": "77197",
+    "title": "Assassin's Apprentice (Farseer Trilogy, #1)",
+    "author": "Robin Hobb",
+    "isbn": "9780553566635"
+  },
+  {
+    "id": "2767793",
+    "title": "The Hero of Ages (Mistborn, #3)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765356147"
+  },
+  {
+    "id": "22878967",
+    "title": "The Shadow of What Was Lost (The Licanius Trilogy, #1)",
+    "author": "James Islington",
+    "isbn": "9780316273459"
+  },
+  {
+    "id": "186074",
+    "title": "The Name of the Wind (The Kingkiller Chronicle, #1)",
+    "author": "Patrick Rothfuss",
+    "isbn": "9780756404741"
+  },
+  {
+    "id": "13510444",
+    "title": "The Lord of the Rings",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780618640157"
+  },
+  {
+    "id": "20761075",
+    "title": "Clariel (Abhorsen, #4)",
+    "author": "Garth Nix",
+    "isbn": "9780061561580"
+  },
+  {
+    "id": "39964634",
+    "title": "Sabriel (Abhorsen, #1)",
+    "author": "Garth Nix",
+    "isbn": "9780064471831"
+  },
+  {
+    "id": "2248573",
+    "title": "Brisingr (The Inheritance Cycle, #3)",
+    "author": "Christopher Paolini",
+    "isbn": "9780375826726"
+  },
+  {
+    "id": "123224262",
+    "title": "The Well of Ascension (Mistborn, #2)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765356131"
+  },
+  {
+    "id": "30119",
+    "title": "Where the Sidewalk Ends",
+    "author": "Shel Silverstein",
+    "isbn": "9780060256685"
+  },
+  {
+    "id": "890",
+    "title": "Of Mice and Men",
+    "author": "John Steinbeck",
+    "isbn": "9780140177398"
+  },
+  {
+    "id": "7624",
+    "title": "Lord of the Flies",
+    "author": "William Golding",
+    "isbn": "9780399501487"
+  },
+  {
+    "id": "2657",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "isbn": "9780061120084"
+  },
+  {
+    "id": "123224254",
+    "title": "Mistborn: The Final Empire (Mistborn, #1)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765311788"
+  },
+  {
+    "id": "9531737",
+    "title": "The Wise Man's Fear (The Kingkiller Chronicle, #2)",
+    "author": "Patrick Rothfuss",
+    "isbn": "9780756407124"
+  },
+  {
+    "id": "6593686",
+    "title": "Lirael (Abhorsen, #2)",
+    "author": "Garth Nix",
+    "isbn": "9780060519606"
+  },
+  {
+    "id": "23513349",
+    "title": "Milk and honey",
+    "author": "Rupi Kaur",
+    "isbn": "9781449474256"
+  },
+  {
+    "id": "30118",
+    "title": "A Light in the Attic",
+    "author": "Shel Silverstein",
+    "isbn": "9780060256730"
+  },
+  {
+    "id": "4671",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "isbn": "9780743273565"
+  },
+  {
+    "id": "30165203",
+    "title": "American Gods: Tenth Anniversary (American Gods, #1)",
+    "author": "Neil Gaiman",
+    "isbn": "9780062472106"
+  },
+  {
+    "id": "113436",
+    "title": "Eragon (The Inheritance Cycle #1)",
+    "author": "Christopher Paolini",
+    "isbn": "9780375826696"
+  },
+  {
+    "id": "34",
+    "title": "The Fellowship of the Ring (The Lord of the Rings, #1)",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780618574940"
+  },
+  {
+    "id": "5907",
+    "title": "The Hobbit, or There and Back Again",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780547928227"
+  },
+  {
+    "id": "3",
+    "title": "Harry Potter and the Sorcerer's Stone (Harry Potter, #1)",
+    "author": "J.K. Rowling",
+    "isbn": "9780590353427"
   }
 ]

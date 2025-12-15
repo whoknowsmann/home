@@ -69,7 +69,9 @@ async function lookupBookData(book) {
   const cacheKey = `${book.title}|${book.author || ''}`;
   if (lookupCache.has(cacheKey)) return lookupCache.get(cacheKey);
 
-  const query = encodeURIComponent(`${book.title} ${book.author || ''}`.trim());
+  const query = book.isbn
+    ? `isbn:${encodeURIComponent(book.isbn)}`
+    : encodeURIComponent(`${book.title} ${book.author || ''}`.trim());
   const googleUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=1`;
 
   let info = { title: book.title, author: book.author };
@@ -116,7 +118,6 @@ async function renderBooks(books) {
     card.className = 'card book-card';
 
     const cover = document.createElement('img');
-    const coverId = book.isbn || book.id;
     cover.className = 'cover';
     cover.alt = `${book.title} cover`;
     cover.loading = 'lazy';
@@ -137,7 +138,7 @@ async function renderBooks(books) {
     const bits = [];
     if (book.author) bits.push(book.author);
     if (book.status) bits.push(book.status);
-    if (coverId) bits.push(`ID ${coverId}`);
+    if (book.isbn) bits.push(`ISBN ${book.isbn}`);
     meta.textContent = bits.join(' · ');
 
     const status = book.status ? document.createElement('span') : null;
