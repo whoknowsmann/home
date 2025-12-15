@@ -182,6 +182,30 @@ function clampTitle(text, max = 45) {
   return text.length > max ? `${text.slice(0, max - 1)}…` : text;
 }
 
+function authorLastName(author = '') {
+  const parts = author.trim().split(/\s+/);
+  return parts.length ? parts[parts.length - 1].toLowerCase() : '';
+}
+
+function seriesOrderFromTitle(title = '') {
+  const match = title.match(/#(\d+)/);
+  return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
+}
+
+function sortBooks(list) {
+  return [...list].sort((a, b) => {
+    const lastA = authorLastName(a.author);
+    const lastB = authorLastName(b.author);
+    if (lastA !== lastB) return lastA.localeCompare(lastB);
+
+    const seriesOrderA = seriesOrderFromTitle(a.title);
+    const seriesOrderB = seriesOrderFromTitle(b.title);
+    if (seriesOrderA !== seriesOrderB) return seriesOrderA - seriesOrderB;
+
+    return (a.title || '').localeCompare(b.title || '');
+  });
+}
+
 function ensureModal() {
   if (modal) return;
 
@@ -282,11 +306,34 @@ async function openBookModal(book) {
   const wkRating =
     typeof book.wkRating === 'number' ? `${book.wkRating.toFixed(1)} / 5` : 'Not rated yet';
 
+  const goodreadsId = book.goodreadsId || book.id;
+  const goodreadsUrl = goodreadsId
+    ? `https://www.goodreads.com/book/show/${goodreadsId}`
+    : null;
+
   const ratingList = document.createElement('ul');
-  ratingList.innerHTML = `
-    <li><strong>Goodreads:</strong> ${grRating ? `${grRating} / 5` : 'N/A'}</li>
-    <li><strong>who knows, man:</strong> ${wkRating}</li>
-  `;
+  const grItem = document.createElement('li');
+  const grLabel = document.createElement('strong');
+  grLabel.textContent = 'Goodreads:';
+  grItem.append(grLabel, document.createTextNode(' '));
+
+  if (goodreadsUrl) {
+    const link = document.createElement('a');
+    link.href = goodreadsUrl;
+    link.target = '_blank';
+    link.rel = 'noreferrer noopener';
+    link.textContent = grRating ? `${grRating} / 5` : 'View on Goodreads';
+    grItem.append(link);
+  } else {
+    grItem.append(document.createTextNode(grRating ? `${grRating} / 5` : 'N/A'));
+  }
+
+  const wkItem = document.createElement('li');
+  const wkLabel = document.createElement('strong');
+  wkLabel.textContent = 'who knows, man:';
+  wkItem.append(wkLabel, document.createTextNode(` ${wkRating}`));
+
+  ratingList.append(grItem, wkItem);
 
   modalRatings.append(ratingList);
   modal.classList.add('open');
@@ -329,7 +376,7 @@ async function renderBooks(books) {
     const bits = [];
     if (book.author) bits.push(book.author);
     if (book.status) bits.push(book.status);
-    if (book.isbn) bits.push(`ISBN ${book.isbn}`);
+    if (book.genre) bits.push(book.genre);
     meta.textContent = bits.join(' · ');
 
     const status = book.status ? document.createElement('span') : null;
@@ -400,8 +447,9 @@ function init() {
 
     fetchJSON('data/books.json')
       .then((books) => {
-        let selection = books;
+        let selection = sortBooks(books);
         if (featuredOnly) selection = selection.filter((book) => book.featured);
+        selection = sortBooks(selection);
         if (limit) selection = selection.slice(0, limit);
         return renderBooks(selection);
       })
