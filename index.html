@@ -13,9 +13,10 @@
       <span class="logo-fallback">who knows, man</span>
     </div>
     <nav class="site-nav">
-      <a href="#writing">writing</a>
-      <a href="#bookshelf">bookshelf</a>
-      <a href="#connect">connect</a>
+      <a href="index.html">home</a>
+      <a href="writing.html">writing</a>
+      <a href="bookshelf.html">bookshelf</a>
+      <a href="connect.html">connect</a>
     </nav>
     <button class="snow-toggle" id="snow-toggle" aria-pressed="true">snow: on</button>
   </header>
@@ -31,6 +32,7 @@
         <p class="section-note">Recent notes, drafts, and things that might be something.</p>
       </div>
       <div id="writing-list" class="card-grid" aria-live="polite"></div>
+      <div class="section-footer"><a href="writing.html" class="meta">See all writing →</a></div>
     </section>
 
     <section id="bookshelf" class="content-section">
@@ -38,7 +40,8 @@
         <h2>Bookshelf</h2>
         <p class="section-note">Covers pulled from the ether. ISBNs if you want to follow along.</p>
       </div>
-      <div id="books-grid" class="book-grid" aria-live="polite"></div>
+      <div id="books-grid" class="book-grid" aria-live="polite" data-limit="5" data-featured="true"></div>
+      <div class="section-footer"><a href="bookshelf.html" class="meta">See the full shelf →</a></div>
     </section>
 
     <section id="connect" class="content-section">
@@ -51,6 +54,7 @@
         <a class="card" href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
         <a class="card" href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
       </div>
+      <div class="section-footer"><a href="connect.html" class="meta">More ways to reach out →</a></div>
     </section>
   </main>
 

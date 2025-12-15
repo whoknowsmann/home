@@ -2,16 +2,19 @@ const booksGrid = document.getElementById('books-grid');
 const writingList = document.getElementById('writing-list');
 const snowToggle = document.getElementById('snow-toggle');
 const snowCanvas = document.getElementById('snow-canvas');
-const ctx = snowCanvas.getContext('2d');
+const ctx = snowCanvas ? snowCanvas.getContext('2d') : null;
 let snowflakes = [];
 let snowActive = true;
+const lookupCache = new Map();
 
 function resizeCanvas() {
+  if (!snowCanvas) return;
   snowCanvas.width = window.innerWidth;
   snowCanvas.height = window.innerHeight;
 }
 
 function createSnowflakes(count = 120) {
+  if (!snowCanvas) return;
   snowflakes = Array.from({ length: count }, () => ({
     x: Math.random() * snowCanvas.width,
     y: Math.random() * snowCanvas.height,
@@ -22,6 +25,7 @@ function createSnowflakes(count = 120) {
 }
 
 function drawSnow() {
+  if (!snowCanvas || !ctx) return;
   if (!snowActive) return;
   ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
 
@@ -43,6 +47,7 @@ function drawSnow() {
 }
 
 function toggleSnow() {
+  if (!snowToggle) return;
   snowActive = !snowActive;
   snowToggle.setAttribute('aria-pressed', String(snowActive));
   snowToggle.textContent = snowActive ? 'snow: on' : 'snow: off';
@@ -60,17 +65,62 @@ function fetchJSON(path) {
   });
 }
 
-function renderBooks(books) {
+async function lookupBookData(book) {
+  const cacheKey = `${book.title}|${book.author || ''}`;
+  if (lookupCache.has(cacheKey)) return lookupCache.get(cacheKey);
+
+  const query = encodeURIComponent(`${book.title} ${book.author || ''}`.trim());
+  const googleUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=1`;
+
+  let info = { title: book.title, author: book.author };
+
+  try {
+    const res = await fetch(googleUrl);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.items && data.items.length) {
+        const volume = data.items[0].volumeInfo;
+        info.title = volume.title || info.title;
+        info.author = (volume.authors && volume.authors.join(', ')) || info.author;
+        const cover = volume.imageLinks?.thumbnail || volume.imageLinks?.smallThumbnail;
+        if (cover) info.cover = cover.replace('http://', 'https://');
+      }
+    }
+  } catch (err) {
+    console.warn('Book lookup failed', err);
+  }
+
+  if (!info.cover) {
+    const coverId = book.isbn || book.id;
+    info.cover = coverId
+      ? `https://covers.openlibrary.org/b/isbn/${coverId}-L.jpg`
+      : 'assets/logo.svg';
+  }
+
+  lookupCache.set(cacheKey, info);
+  return info;
+}
+
+async function renderBooks(books) {
   booksGrid.innerHTML = '';
-  books.forEach((book) => {
+
+  const enriched = await Promise.all(
+    books.map(async (book) => {
+      const info = await lookupBookData(book);
+      return { ...book, ...info };
+    })
+  );
+
+  enriched.forEach((book) => {
     const card = document.createElement('article');
     card.className = 'card book-card';
 
     const cover = document.createElement('img');
+    const coverId = book.isbn || book.id;
     cover.className = 'cover';
     cover.alt = `${book.title} cover`;
     cover.loading = 'lazy';
-    cover.src = `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`;
+    cover.src = book.cover;
     cover.onerror = () => {
       cover.onerror = null;
       cover.src = 'assets/logo.svg';
@@ -84,13 +134,21 @@ function renderBooks(books) {
 
     const meta = document.createElement('p');
     meta.className = 'meta';
-    meta.textContent = `${book.author} · ISBN ${book.isbn}`;
+    const bits = [];
+    if (book.author) bits.push(book.author);
+    if (book.status) bits.push(book.status);
+    if (coverId) bits.push(`ID ${coverId}`);
+    meta.textContent = bits.join(' · ');
 
-    const status = document.createElement('span');
-    status.className = 'status';
-    status.textContent = book.status;
+    const status = book.status ? document.createElement('span') : null;
+    if (status) {
+      status.className = 'status';
+      status.textContent = book.status;
+      body.append(title, meta, status);
+    } else {
+      body.append(title, meta);
+    }
 
-    body.append(title, meta, status);
     card.append(cover, body);
     booksGrid.append(card);
   });
@@ -117,23 +175,41 @@ function renderPosts(posts) {
 }
 
 function init() {
-  resizeCanvas();
-  createSnowflakes();
-  drawSnow();
-
-  snowToggle.addEventListener('click', toggleSnow);
-  window.addEventListener('resize', () => {
+  if (snowCanvas && snowToggle) {
     resizeCanvas();
     createSnowflakes();
-  });
+    drawSnow();
 
-  fetchJSON('data/books.json').then(renderBooks).catch((err) => {
-    booksGrid.innerHTML = `<p class="meta">${err.message}</p>`;
-  });
+    snowToggle.addEventListener('click', toggleSnow);
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createSnowflakes();
+    });
+  }
 
-  fetchJSON('data/posts.json').then(renderPosts).catch((err) => {
-    writingList.innerHTML = `<p class="meta">${err.message}</p>`;
-  });
+  if (booksGrid) {
+    const limit = booksGrid.dataset.limit ? Number(booksGrid.dataset.limit) : null;
+    const featuredOnly = booksGrid.dataset.featured === 'true';
+
+    fetchJSON('data/books.json')
+      .then((books) => {
+        let selection = books;
+        if (featuredOnly) selection = selection.filter((book) => book.featured);
+        if (limit) selection = selection.slice(0, limit);
+        return renderBooks(selection);
+      })
+      .catch((err) => {
+        booksGrid.innerHTML = `<p class="meta">${err.message}</p>`;
+      });
+  }
+
+  if (writingList) {
+    fetchJSON('data/posts.json')
+      .then(renderPosts)
+      .catch((err) => {
+        writingList.innerHTML = `<p class="meta">${err.message}</p>`;
+      });
+  }
 }
 
 init();

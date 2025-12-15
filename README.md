@@ -1,28 +1,30 @@
 # who knows, man
 
-A tiny, static-first personal site for notes, books, and whatever else is rattling around.
+Tiny personal corner of the internet. Static files, scribbled logo, books and posts pulled from JSON. No frameworks to babysit.
 
-## Local development
+## How to poke at it locally
 
-This is just HTML/CSS/JS. Use any static server. Example with Python:
-
-```bash
-python3 -m http.server 3000
-```
-
-Then visit [http://localhost:3000](http://localhost:3000).
-
-## Deploying to Vercel
-
-1. Install the Vercel CLI if you want to deploy from the terminal:
+1. Open a terminal in the repo root.
+2. Run a quick static server. Python works fine:
    ```bash
-   npm i -g vercel
+   python3 -m http.server 3000
    ```
-2. From the repo root, run `vercel` and follow the prompts. It will detect this as a static site.
-3. Future deploys are as easy as `vercel --prod`.
+3. Visit [http://localhost:3000](http://localhost:3000) and click around.
 
-## Custom domain (whoknowsman.com)
+### Swap in new books or posts
 
-1. In the Vercel dashboard, open the project and add the domain `whoknowsman.com` under **Settings → Domains**.
-2. If the domain is registered elsewhere, point its nameservers to Vercel or add the provided A/CNAME records.
-3. Wait for DNS to settle; Vercel handles the certificate automatically.
+- All the lists live in `data/`. Add a new object to `data/books.json` or `data/posts.json` and reload the page.
+- A book entry is just `{ "id": "123", "title": "Your Book", "author": "You" }`. Google Books gets poked with the title/author to find a cover; if you have a reliable ISBN, add an `isbn` field as a backup for Open Library.
+- Want something to surface on the homepage shelf? Add `"featured": true` to that book.
+
+## Ship it to Vercel
+
+- `npm i -g vercel` if you want the CLI. Or use the dashboard; either way is fine.
+- From the repo root, `vercel` and accept the defaults. It detects a static site, no build step needed.
+- When you're ready for production: `vercel --prod`.
+
+## Pointing whoknowsman.com
+
+- In the Vercel project, go to **Settings → Domains** and add `whoknowsman.com` (and `www` if you want it).
+- If the domain lives elsewhere, add the A/CNAME records Vercel gives you or switch nameservers to them.
+- Wait a bit for DNS to catch up; HTTPS is automatic once it resolves.
