@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notebook stack rotation — who knows, man</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/index.html" aria-label="who knows, man home">who knows, man</a>
+    <nav class="site-nav">
+      <a href="/writing.html" aria-current="page">writing</a>
+      <a href="/bookshelf.html">bookshelf</a>
+      <a href="/projects.html">projects</a>
+      <a href="/connect.html">contact</a>
+    </nav>
+    <button class="snow-toggle" id="snow-toggle" aria-pressed="true">snow: on</button>
+  </header>
+
+  <main>
+    <article class="post">
+      <header class="post-header">
+        <p class="meta">Paper trail</p>
+        <h1>Notebook stack rotation</h1>
+      </header>
+      <figure class="post-figure">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80" alt="A stack of notebooks and pencils" loading="lazy">
+        <figcaption>The current rotation on my desk.</figcaption>
+      </figure>
+      <div class="post-body">
+        <p>I cycle through three notebooks at the moment. A tiny pocket book for quick errands, a dotted A5 for sketching UI ideas, and a clothbound journal that catches the longer rambles.</p>
+        <p>The trick is keeping them from overlapping. The pocket book is allowed to be messy. The A5 gets taped scraps, labels, and lists. The journal is for longer sentences and slower thinking. If something needs to move between them, I redraw it instead of tearing pages.</p>
+        <p>It sounds fussy, but the routine keeps me writing by hand. Pens matter less than having the right paper nearby when an idea arrives.</p>
+      </div>
+    </article>
+  </main>
+
+  <canvas id="snow-canvas" class="snow-canvas" aria-hidden="true"></canvas>
+  <script src="/js/main.js"></script>
+</body>
+</html>
