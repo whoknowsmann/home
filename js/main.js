@@ -135,7 +135,7 @@ async function lookupBookData(book) {
         if (isbnMatches || authorMatches) {
           if (volume.description) info.description = volume.description;
           const cover = volume.imageLinks?.thumbnail || volume.imageLinks?.smallThumbnail;
-          if (!book.coverIsbn && !book.isbn && cover) {
+          if (cover) {
             info.cover = cover.replace('http://', 'https://');
           }
         }
@@ -386,8 +386,13 @@ function renderBooks(grid, books) {
     cover.alt = `${book.title} cover`;
     cover.loading = 'lazy';
     cover.src = coverUrl(book, 'M');
-    cover.onerror = () => {
+    cover.onerror = async () => {
       cover.onerror = null;
+      const lookedUp = await lookupBookData(book);
+      if (lookedUp.cover && lookedUp.cover !== cover.src) {
+        cover.src = lookedUp.cover;
+        return;
+      }
       cover.src = 'assets/logo.svg';
       cover.style.objectFit = 'contain';
       cover.style.background = '#fff';
