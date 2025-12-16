@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>who knows, man</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/index.html" aria-label="who knows, man home">who knows, man</a>
+    <nav class="site-nav">
+      <a href="/writing.html">writing</a>
+      <a href="/bookshelf.html">bookshelf</a>
+      <a href="/projects.html">projects</a>
+      <a href="/connect.html">contact</a>
+    </nav>
+    <button class="snow-toggle" id="snow-toggle" aria-pressed="true">snow: on</button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="tagline">my brain on a webpage — half shrug, intensely purposeful.</p>
+    </section>
+
+    <section id="writing" class="content-section">
+      <div class="section-heading">
+        <h2>Writing</h2>
+        <p class="section-note">Recent notes, drafts, and things that might be something.</p>
+      </div>
+      <div id="writing-list" class="card-grid" aria-live="polite"></div>
+      <div class="section-footer"><a href="writing.html" class="meta">See all writing →</a></div>
+    </section>
+
+    <section id="bookshelf" class="content-section">
+      <div class="section-heading">
+        <h2>Currently reading</h2>
+        <p class="section-note">The stack in motion. Pulls live covers and blurbs; adjusts to however many I’m juggling.</p>
+      </div>
+      <div id="books-grid" class="book-grid" aria-live="polite" data-books-grid data-currently-reading="true"></div>
+      <div class="section-footer"><a href="bookshelf.html" class="meta">See the full shelf →</a></div>
+    </section>
+
+    <section id="connect" class="content-section">
+      <div class="section-heading">
+        <h2>Connect</h2>
+        <p class="section-note">Say hi, share a song, recommend a book.</p>
+      </div>
+      <div class="card-grid connect-grid">
+        <a class="card" href="mailto:hello@whoknowsman.com">Email</a>
+        <a class="card" href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="card" href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+      </div>
+      <div class="section-footer"><a href="connect.html" class="meta">More ways to reach out →</a></div>
+    </section>
+  </main>
+
+  <canvas id="snow-canvas" class="snow-canvas" aria-hidden="true"></canvas>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
