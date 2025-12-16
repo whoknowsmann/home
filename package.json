@@ -1,0 +1,9 @@
+{
+  "name": "who-knows-man",
+  "version": "1.0.0",
+  "description": "Static personal site with local book covers",
+  "type": "module",
+  "scripts": {
+    "resolve-covers": "node scripts/resolve-covers.js"
+  }
+}

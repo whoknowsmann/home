@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" role="img" aria-label="Book cover placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8f9fb" />
+      <stop offset="100%" stop-color="#e3e7ef" />
+    </linearGradient>
+  </defs>
+  <rect width="320" height="480" fill="url(#bg)" rx="12" />
+  <rect x="36" y="60" width="248" height="60" rx="10" fill="#d1d7e3" />
+  <rect x="36" y="140" width="180" height="18" rx="9" fill="#c0c8d6" />
+  <rect x="36" y="172" width="210" height="18" rx="9" fill="#c0c8d6" />
+  <rect x="36" y="204" width="160" height="18" rx="9" fill="#c0c8d6" />
+  <rect x="36" y="258" width="248" height="150" rx="12" fill="#dfe4ee" />
+  <text x="50%" y="350" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#7a8190">
+    who knows, man
+  </text>
+</svg>
