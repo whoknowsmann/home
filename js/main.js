@@ -96,9 +96,11 @@ async function lookupBookData(book) {
   const cacheKey = `${book.title}|${book.author || ''}`;
   if (lookupCache.has(cacheKey)) return lookupCache.get(cacheKey);
 
+  const titleQuery = book.lookupTitle || book.title || '';
+  const authorQuery = book.author || '';
   const query = book.isbn
     ? `isbn:${encodeURIComponent(book.isbn)}`
-    : encodeURIComponent(`${book.title} ${book.author || ''}`.trim());
+    : `intitle:${encodeURIComponent(titleQuery)}${authorQuery ? `+inauthor:${encodeURIComponent(authorQuery)}` : ''}`;
   const googleUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=1`;
 
   let info = { title: book.title, author: book.author };
@@ -109,11 +111,26 @@ async function lookupBookData(book) {
       const data = await res.json();
       if (data.items && data.items.length) {
         const volume = data.items[0].volumeInfo;
-        info.title = volume.title || info.title;
-        info.author = (volume.authors && volume.authors.join(', ')) || info.author;
-        const cover = volume.imageLinks?.thumbnail || volume.imageLinks?.smallThumbnail;
-        if (cover) info.cover = cover.replace('http://', 'https://');
-        if (volume.description) info.description = volume.description;
+        const volumeTitle = volume.title || info.title;
+        const normalizedVolumeTitle = volumeTitle.toLowerCase();
+        const normalizedTargetTitle = (book.title || '').toLowerCase();
+        const titleMatches =
+          normalizedVolumeTitle.includes(normalizedTargetTitle) ||
+          normalizedTargetTitle.includes(normalizedVolumeTitle);
+
+        const volumeAuthors = (volume.authors && volume.authors.join(' ')) || '';
+        const targetLastName = authorLastName(book.author);
+        const authorMatches = targetLastName
+          ? volumeAuthors.toLowerCase().includes(targetLastName)
+          : true;
+
+        if (titleMatches && authorMatches) {
+          info.title = volumeTitle;
+          info.author = volumeAuthors || info.author;
+          const cover = volume.imageLinks?.thumbnail || volume.imageLinks?.smallThumbnail;
+          if (cover) info.cover = cover.replace('http://', 'https://');
+          if (volume.description) info.description = volume.description;
+        }
       }
     }
   } catch (err) {
@@ -143,7 +160,7 @@ async function lookupBookData(book) {
   }
 
   if (!info.cover) {
-    const coverId = book.isbn || book.id;
+    const coverId = book.coverIsbn || book.isbn || book.id;
     info.cover = coverId
       ? `https://covers.openlibrary.org/b/isbn/${coverId}-L.jpg`
       : 'assets/logo.svg';
@@ -192,11 +209,20 @@ function seriesOrderFromTitle(title = '') {
   return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
 }
 
+function seriesNameFromTitle(title = '') {
+  const match = title.match(/\(([^#)]+)#\d+/);
+  return match ? match[1].trim().toLowerCase() : '';
+}
+
 function sortBooks(list) {
   return [...list].sort((a, b) => {
     const lastA = authorLastName(a.author);
     const lastB = authorLastName(b.author);
     if (lastA !== lastB) return lastA.localeCompare(lastB);
+
+    const seriesA = seriesNameFromTitle(a.title);
+    const seriesB = seriesNameFromTitle(b.title);
+    if (seriesA !== seriesB) return seriesA.localeCompare(seriesB);
 
     const seriesOrderA = seriesOrderFromTitle(a.title);
     const seriesOrderB = seriesOrderFromTitle(b.title);
