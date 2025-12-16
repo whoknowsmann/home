@@ -1,0 +1,439 @@
+[
+  {
+    "id": "50009069",
+    "title": "The Blade Itself (The First Law, #1)",
+    "author": "Joe Abercrombie",
+    "isbn": "9781591025944",
+    "genre": "Grimdark fantasy"
+  },
+  {
+    "id": "902715",
+    "title": "Before They Are Hanged (The First Law, #2)",
+    "author": "Joe Abercrombie",
+    "isbn": "9781591026415",
+    "genre": "Grimdark fantasy",
+    "status": "Currently reading"
+  },
+  {
+    "id": "30165203",
+    "title": "American Gods: Tenth Anniversary (American Gods, #1)",
+    "author": "Neil Gaiman",
+    "isbn": "9780062472106",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "29588376",
+    "title": "The Lies of Locke Lamora (Gentleman Bastard, #1)",
+    "author": "Scott Lynch",
+    "isbn": "9780553588941",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "40604556",
+    "title": "Red Seas Under Red Skies (Gentleman Bastard, #2)",
+    "author": "Scott Lynch",
+    "isbn": "9780553588958",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "52702097",
+    "title": "Piranesi",
+    "author": "Susanna Clarke",
+    "isbn": "9781635575637",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "36454667",
+    "title": "Empire of Silence (The Sun Eater, #1)",
+    "author": "Christopher Ruocchio",
+    "isbn": "9780756410261",
+    "genre": "Science fiction"
+  },
+  {
+    "id": "15839976",
+    "title": "Red Rising (Red Rising Saga, #1)",
+    "author": "Pierce Brown",
+    "isbn": "9780345539809",
+    "featured": true,
+    "wkRating": 4.5,
+    "genre": "Science fiction"
+  },
+  {
+    "id": "30118",
+    "title": "A Light in the Attic",
+    "author": "Shel Silverstein",
+    "isbn": "9780060256730",
+    "genre": "Poetry"
+  },
+  {
+    "id": "30119",
+    "title": "Where the Sidewalk Ends",
+    "author": "Shel Silverstein",
+    "isbn": "9780060256685",
+    "genre": "Poetry"
+  },
+  {
+    "id": "17250966",
+    "title": "Rhythm of War (The Stormlight Archive, #4)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765326386",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "208033237",
+    "title": "Oathbringer (The Stormlight Archive, #3)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765326379",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "208033371",
+    "title": "Words of Radiance (The Stormlight Archive, #2)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765326362",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "53463056",
+    "title": "The Way of Kings (The Stormlight Archive, #1)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765326355",
+    "genre": "Epic fantasy",
+    "featured": true
+  },
+  {
+    "id": "203608754",
+    "title": "Wind and Truth (The Stormlight Archive, #5)",
+    "author": "Brandon Sanderson",
+    "isbn": "9781250313692",
+    "featured": true,
+    "wkRating": 4.9,
+    "status": "Currently reading",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "123224254",
+    "title": "Mistborn: The Final Empire (Mistborn, #1)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765350381",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "123224262",
+    "title": "The Well of Ascension (Mistborn, #2)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765356131",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "2767793",
+    "title": "The Hero of Ages (Mistborn, #3)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765356147",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "10803121",
+    "title": "The Alloy of Law (Mistborn, #4)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765368546",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "68427",
+    "title": "Elantris (Elantris, #1)",
+    "author": "Brandon Sanderson",
+    "isbn": "9780765350374",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "124950508",
+    "title": "The Complete Poppy War Trilogy: The Poppy War, The Dragon Republic, The Burning God",
+    "author": "R.F. Kuang",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "104089",
+    "title": "Tigana",
+    "author": "Guy Gavriel Kay",
+    "isbn": "9780451456732",
+    "featured": true,
+    "wkRating": 4.7,
+    "genre": "Fantasy"
+  },
+  {
+    "id": "4671",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "isbn": "9780743273565",
+    "genre": "Classic fiction"
+  },
+  {
+    "id": "50863421",
+    "title": "A Game of Thrones (A Song of Ice and Fire, #1)",
+    "author": "George R.R. Martin",
+    "isbn": "9780553573404",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "890",
+    "title": "Of Mice and Men",
+    "author": "John Steinbeck",
+    "isbn": "9780140177398",
+    "genre": "Classic fiction"
+  },
+  {
+    "id": "3",
+    "title": "Harry Potter and the Sorcerer's Stone (Harry Potter, #1)",
+    "author": "J.K. Rowling",
+    "isbn": "9780590353427",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "2",
+    "title": "Harry Potter and the Chamber of Secrets (Harry Potter, #2)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439064873",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "5",
+    "title": "Harry Potter and the Prisoner of Azkaban (Harry Potter, #3)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439136365",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "6",
+    "title": "Harry Potter and the Goblet of Fire (Harry Potter, #4)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439139601",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "7",
+    "title": "Harry Potter and the Order of the Phoenix (Harry Potter, #5)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439358071",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "8",
+    "title": "Harry Potter and the Half-Blood Prince (Harry Potter, #6)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439785969",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "9",
+    "title": "Harry Potter and the Deathly Hallows (Harry Potter, #7)",
+    "author": "J.K. Rowling",
+    "isbn": "9780545010221",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "186074",
+    "title": "The Name of the Wind (The Kingkiller Chronicle, #1)",
+    "author": "Patrick Rothfuss",
+    "isbn": "9780756404741",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "9531737",
+    "title": "The Wise Man's Fear (The Kingkiller Chronicle, #2)",
+    "author": "Patrick Rothfuss",
+    "isbn": "9780756407124",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "60211",
+    "title": "The Shadow of the Torturer",
+    "author": "Gene Wolfe",
+    "isbn": "9780312890179",
+    "genre": "Science fantasy"
+  },
+  {
+    "id": "53646568",
+    "title": "The Fabric of Civilization: How Textiles Made the World",
+    "author": "Virginia Postrel",
+    "isbn": "9781541617605",
+    "genre": "History",
+    "status": "Currently reading"
+  },
+  {
+    "id": "58416952",
+    "title": "The Will of the Many (Hierarchy, #1)",
+    "author": "James Islington",
+    "isbn": "9781645660565",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "22878967",
+    "title": "The Shadow of What Was Lost (The Licanius Trilogy, #1)",
+    "author": "James Islington",
+    "isbn": "9780316273459",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "7664041",
+    "title": "Inheritance (The Inheritance Cycle, #4)",
+    "author": "Christopher Paolini",
+    "isbn": "9780375867828",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "2248573",
+    "title": "Brisingr (The Inheritance Cycle, #3)",
+    "author": "Christopher Paolini",
+    "isbn": "9780375826726",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "45978",
+    "title": "Eldest (The Inheritance Cycle, #2)",
+    "author": "Christopher Paolini",
+    "isbn": "9780375826702",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "113436",
+    "title": "Eragon (The Inheritance Cycle #1)",
+    "author": "Christopher Paolini",
+    "isbn": "9780375826696",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "123206298",
+    "title": "Murtagh (The Inheritance Cycle, #5)",
+    "author": "Christopher Paolini",
+    "isbn": "9781984894861",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "6569831",
+    "title": "Furies of Calderon (Codex Alera, #1)",
+    "author": "Jim Butcher",
+    "isbn": "9780441012688",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "20761075",
+    "title": "Clariel (Abhorsen, #4)",
+    "author": "Garth Nix",
+    "isbn": "9780061561580",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "123", 
+    "title": "Terciel & Elinor (Abhorsen, #0)",
+    "author": "Garth Nix",
+    "isbn": "9780063040519",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "6593686",
+    "title": "Lirael (Abhorsen, #2)",
+    "author": "Garth Nix",
+    "isbn": "9780060519606",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "150648", 
+    "title": "Abhorsen (Abhorsen, #3)",
+    "author": "Garth Nix",
+    "isbn": "9780060528738",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "39964634",
+    "title": "Sabriel (Abhorsen, #1)",
+    "author": "Garth Nix",
+    "isbn": "9780064471831",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "28697933",
+    "title": "Goldenhand (Abhorsen, #5)",
+    "author": "Garth Nix",
+    "isbn": "9780061561559",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "2657",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "isbn": "9780061120084",
+    "genre": "Classic fiction"
+  },
+  {
+    "id": "23692271",
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "isbn": "9780062316097",
+    "genre": "History"
+  },
+  {
+    "id": "5907",
+    "title": "The Hobbit, or There and Back Again",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780547928227",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "34",
+    "title": "The Fellowship of the Ring (The Lord of the Rings, #1)",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780618574940",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "15241",
+    "title": "The Two Towers (The Lord of the Rings, #2)",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780618574957",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "18510",
+    "title": "The Return of the King (The Lord of the Rings, #3)",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780618574971",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "7624",
+    "title": "Lord of the Flies",
+    "author": "William Golding",
+    "isbn": "9780399501487",
+    "genre": "Classic fiction"
+  },
+  {
+    "id": "228665",
+    "title": "The Eye of the World (The Wheel of Time, #1)",
+    "author": "Robert Jordan",
+    "isbn": "9780812511819",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "23513349",
+    "title": "Milk and honey",
+    "author": "Rupi Kaur",
+    "isbn": "9781449474256",
+    "genre": "Poetry"
+  },
+  {
+    "id": "2205528",
+    "title": "The Philosopher and the Wolf: Lessons from the Wild on Love, Death and Happiness",
+    "author": "Mark Rowlands",
+    "isbn": "9781605980438",
+    "genre": "Philosophy"
+  },
+  {
+    "id": "1929-sorkin",
+    "title": "1929",
+    "lookupTitle": "1929 stock market crash",
+    "author": "Andrew Ross Sorkin",
+    "genre": "History",
+    "status": "Currently reading"
+  }
+]

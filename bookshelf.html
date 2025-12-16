@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookshelf — who knows, man</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/index.html" aria-label="who knows, man home">who knows, man</a>
+    <nav class="site-nav">
+      <a href="/writing.html">writing</a>
+      <a href="/bookshelf.html" aria-current="page">bookshelf</a>
+      <a href="/projects.html">projects</a>
+      <a href="/connect.html">contact</a>
+    </nav>
+    <button class="snow-toggle" id="snow-toggle" aria-pressed="true">snow: on</button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="tagline">The books orbiting my nightstand, backpack, or bedside floor.</p>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <h1>Currently reading</h1>
+        <p class="section-note">What’s open on the desk right now.</p>
+      </div>
+      <div class="book-grid" aria-live="polite" data-books-grid data-currently-reading="true"></div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <h2>Bookshelf</h2>
+        <p class="section-note">Pulled from the shelf. Covers via Google Books with Open Library fallback.</p>
+      </div>
+      <div class="book-grid" aria-live="polite" data-books-grid></div>
+    </section>
+  </main>
+
+  <canvas id="snow-canvas" class="snow-canvas" aria-hidden="true"></canvas>
+  <script src="js/main.js"></script>
+</body>
+</html>
