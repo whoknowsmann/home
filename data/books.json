@@ -190,6 +190,48 @@
     "genre": "Fantasy"
   },
   {
+    "id": "2",
+    "title": "Harry Potter and the Chamber of Secrets (Harry Potter, #2)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439064873",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "5",
+    "title": "Harry Potter and the Prisoner of Azkaban (Harry Potter, #3)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439136365",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "6",
+    "title": "Harry Potter and the Goblet of Fire (Harry Potter, #4)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439139601",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "7",
+    "title": "Harry Potter and the Order of the Phoenix (Harry Potter, #5)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439358071",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "8",
+    "title": "Harry Potter and the Half-Blood Prince (Harry Potter, #6)",
+    "author": "J.K. Rowling",
+    "isbn": "9780439785969",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "9",
+    "title": "Harry Potter and the Deathly Hallows (Harry Potter, #7)",
+    "author": "J.K. Rowling",
+    "isbn": "9780545010221",
+    "genre": "Fantasy"
+  },
+  {
     "id": "186074",
     "title": "The Name of the Wind (The Kingkiller Chronicle, #1)",
     "author": "Patrick Rothfuss",
@@ -338,17 +380,24 @@
     "genre": "Fantasy"
   },
   {
-    "id": "13510444",
-    "title": "The Lord of the Rings",
-    "author": "J.R.R. Tolkien",
-    "isbn": "9780618640157",
-    "genre": "Epic fantasy"
-  },
-  {
     "id": "34",
     "title": "The Fellowship of the Ring (The Lord of the Rings, #1)",
     "author": "J.R.R. Tolkien",
     "isbn": "9780618574940",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "15241",
+    "title": "The Two Towers (The Lord of the Rings, #2)",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780618574957",
+    "genre": "Epic fantasy"
+  },
+  {
+    "id": "18510",
+    "title": "The Return of the King (The Lord of the Rings, #3)",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780618574971",
     "genre": "Epic fantasy"
   },
   {

@@ -189,24 +189,38 @@ main {
 
 .book-card {
   display: grid;
-  grid-template-columns: 90px minmax(0, 1fr);
-  gap: 12px;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 16px;
   align-items: center;
-  min-height: 140px;
+  min-height: 170px;
 }
 
 .book-card h3 {
-  display: block;
+  display: -webkit-box;
   margin: 0 0 6px;
-  font-size: 16px;
+  font-size: 17px;
+  line-height: 1.4;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-card-body {
+  display: grid;
+  gap: 6px;
+}
+
+.author-line {
+  margin: 0;
+  font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .cover {
-  width: 90px;
-  height: 130px;
+  width: 110px;
+  height: 160px;
   object-fit: cover;
   border-radius: 6px;
   border: 1px solid var(--border);
@@ -214,7 +228,7 @@ main {
 }
 
 .meta {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -384,12 +398,12 @@ main {
   }
 
   .book-card {
-    grid-template-columns: 70px 1fr;
+    grid-template-columns: 90px 1fr;
   }
 
   .cover {
-    width: 70px;
-    height: 100px;
+    width: 90px;
+    height: 135px;
   }
 
   .post-card {

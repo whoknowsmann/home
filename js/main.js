@@ -124,7 +124,15 @@ async function lookupBookData(book) {
           ? volumeAuthors.toLowerCase().includes(targetLastName)
           : true;
 
-        if (titleMatches && authorMatches) {
+        const identifiers = volume.industryIdentifiers || [];
+        const normalizedIsbn = (book.isbn || '').replace(/[^0-9X]/gi, '');
+        const isbnMatches = normalizedIsbn
+          ? identifiers.some((id) =>
+              (id.identifier || '').replace(/[^0-9X]/gi, '') === normalizedIsbn
+            )
+          : true;
+
+        if (titleMatches && authorMatches && isbnMatches) {
           info.title = volumeTitle;
           info.author = volumeAuthors || info.author;
           const cover = volume.imageLinks?.thumbnail || volume.imageLinks?.smallThumbnail;
@@ -192,11 +200,6 @@ async function fetchGoodreadsRating(book) {
     ratingCache.set(goodreadsId, null);
     return null;
   }
-}
-
-function clampTitle(text, max = 45) {
-  if (!text) return '';
-  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
 }
 
 function authorLastName(author = '') {
@@ -394,24 +397,29 @@ async function renderBooks(grid, books) {
     };
 
     const body = document.createElement('div');
+    body.className = 'book-card-body';
+
     const title = document.createElement('h3');
-    title.textContent = clampTitle(book.title);
+    title.textContent = book.title;
+
+    const authorLine = document.createElement('p');
+    authorLine.className = 'author-line';
+    authorLine.textContent = book.author || '';
 
     const meta = document.createElement('p');
     meta.className = 'meta';
     const bits = [];
-    if (book.author) bits.push(book.author);
-    if (book.status) bits.push(book.status);
     if (book.genre) bits.push(book.genre);
+    if (book.status) bits.push(book.status);
     meta.textContent = bits.join(' · ');
 
     const status = book.status ? document.createElement('span') : null;
     if (status) {
       status.className = 'status';
       status.textContent = book.status;
-      body.append(title, meta, status);
+      body.append(title, authorLine, meta, status);
     } else {
-      body.append(title, meta);
+      body.append(title, authorLine, meta);
     }
 
     card.append(cover, body);
