@@ -25,10 +25,18 @@
 
     <section class="content-section">
       <div class="section-heading">
-        <h1>Bookshelf</h1>
-        <p class="section-note">ISBNs included so you can track them down. Covers via Google Books with Open Library fallback.</p>
+        <h1>Currently reading</h1>
+        <p class="section-note">What’s open on the desk right now.</p>
       </div>
-      <div id="books-grid" class="book-grid" aria-live="polite"></div>
+      <div class="book-grid" aria-live="polite" data-books-grid data-currently-reading="true"></div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <h2>Bookshelf</h2>
+        <p class="section-note">Pulled from the shelf. Covers via Google Books with Open Library fallback.</p>
+      </div>
+      <div class="book-grid" aria-live="polite" data-books-grid></div>
     </section>
   </main>
 

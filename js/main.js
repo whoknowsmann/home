@@ -1,4 +1,4 @@
-const booksGrid = document.getElementById('books-grid');
+const bookGrids = document.querySelectorAll('[data-books-grid], #books-grid');
 const writingList = document.getElementById('writing-list');
 const snowToggle = document.getElementById('snow-toggle');
 const snowCanvas = document.getElementById('snow-canvas');
@@ -340,8 +340,8 @@ async function openBookModal(book) {
   document.body.style.overflow = 'hidden';
 }
 
-async function renderBooks(books) {
-  booksGrid.innerHTML = '';
+async function renderBooks(grid, books) {
+  grid.innerHTML = '';
 
   const enriched = await Promise.all(
     books.map(async (book) => {
@@ -393,7 +393,7 @@ async function renderBooks(books) {
     card.addEventListener('keypress', (evt) => {
       if (evt.key === 'Enter') openBookModal(book);
     });
-    booksGrid.append(card);
+    grid.append(card);
   });
 }
 
@@ -441,20 +441,29 @@ function init() {
     });
   }
 
-  if (booksGrid) {
-    const limit = booksGrid.dataset.limit ? Number(booksGrid.dataset.limit) : null;
-    const featuredOnly = booksGrid.dataset.featured === 'true';
-
+  if (bookGrids.length) {
     fetchJSON('data/books.json')
       .then((books) => {
-        let selection = sortBooks(books);
-        if (featuredOnly) selection = selection.filter((book) => book.featured);
-        selection = sortBooks(selection);
-        if (limit) selection = selection.slice(0, limit);
-        return renderBooks(selection);
+        bookGrids.forEach((grid) => {
+          const limit = grid.dataset.limit ? Number(grid.dataset.limit) : null;
+          const featuredOnly = grid.dataset.featured === 'true';
+          const currentlyReadingOnly = grid.dataset.currentlyReading === 'true';
+
+          let selection = [...books];
+          if (currentlyReadingOnly) selection = selection.filter((book) => book.status === 'Currently reading');
+          if (featuredOnly) selection = selection.filter((book) => book.featured);
+          selection = sortBooks(selection);
+          if (limit) selection = selection.slice(0, limit);
+
+          renderBooks(grid, selection).catch((err) => {
+            grid.innerHTML = `<p class="meta">${err.message}</p>`;
+          });
+        });
       })
       .catch((err) => {
-        booksGrid.innerHTML = `<p class="meta">${err.message}</p>`;
+        bookGrids.forEach((grid) => {
+          grid.innerHTML = `<p class="meta">${err.message}</p>`;
+        });
       });
   }
 

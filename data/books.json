@@ -7,6 +7,14 @@
     "genre": "Grimdark fantasy"
   },
   {
+    "id": "902715",
+    "title": "Before They Are Hanged (The First Law, #2)",
+    "author": "Joe Abercrombie",
+    "isbn": "9781591026415",
+    "genre": "Grimdark fantasy",
+    "status": "Currently reading"
+  },
+  {
     "id": "30165203",
     "title": "American Gods: Tenth Anniversary (American Gods, #1)",
     "author": "Neil Gaiman",
@@ -100,6 +108,7 @@
     "isbn": "9781250313697",
     "featured": true,
     "wkRating": 4.9,
+    "status": "Currently reading",
     "genre": "Epic fantasy"
   },
   {
@@ -202,6 +211,14 @@
     "genre": "Science fantasy"
   },
   {
+    "id": "53646568",
+    "title": "The Fabric of Civilization: How Textiles Made the World",
+    "author": "Virginia Postrel",
+    "isbn": "9781541617605",
+    "genre": "History",
+    "status": "Currently reading"
+  },
+  {
     "id": "58416952",
     "title": "The Will of the Many (Hierarchy, #1)",
     "author": "James Islington",
@@ -265,6 +282,13 @@
     "genre": "Fantasy"
   },
   {
+    "id": "123", 
+    "title": "Terciel & Elinor (Abhorsen, #0)",
+    "author": "Garth Nix",
+    "isbn": "9780063040519",
+    "genre": "Fantasy"
+  },
+  {
     "id": "6593686",
     "title": "Lirael (Abhorsen, #2)",
     "author": "Garth Nix",
@@ -272,10 +296,24 @@
     "genre": "Fantasy"
   },
   {
+    "id": "150648", 
+    "title": "Abhorsen (Abhorsen, #3)",
+    "author": "Garth Nix",
+    "isbn": "9780060528738",
+    "genre": "Fantasy"
+  },
+  {
     "id": "39964634",
     "title": "Sabriel (Abhorsen, #1)",
     "author": "Garth Nix",
     "isbn": "9780064471831",
+    "genre": "Fantasy"
+  },
+  {
+    "id": "28697933",
+    "title": "Goldenhand (Abhorsen, #5)",
+    "author": "Garth Nix",
+    "isbn": "9780061561559",
     "genre": "Fantasy"
   },
   {
@@ -326,5 +364,12 @@
     "author": "Rupi Kaur",
     "isbn": "9781449474256",
     "genre": "Poetry"
+  },
+  {
+    "id": "1929-sorkin",
+    "title": "1929",
+    "author": "Sorkin",
+    "genre": "History",
+    "status": "Currently reading"
   }
 ]
