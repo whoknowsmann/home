@@ -1,0 +1,5 @@
+assets/covers/*.jpg
+assets/covers/*.jpeg
+assets/covers/*.png
+assets/covers/*.webp
+!assets/covers/placeholder.svg

@@ -8,6 +8,7 @@ let snowActive = true;
 const lookupCache = new Map();
 const detailCache = new Map();
 const ratingCache = new Map();
+const PLACEHOLDER_COVER = '/assets/covers/placeholder.svg';
 let modal;
 let modalContent;
 let modalClose;
@@ -93,22 +94,16 @@ function fetchJSON(path) {
   });
 }
 
-function coverUrl(book, size = 'M') {
-  const isbn = (book.coverIsbn || book.isbn || '').replace(/[^0-9X]/gi, '');
-  if (isbn) return `https://covers.openlibrary.org/b/isbn/${isbn}-${size}.jpg`;
-  const olid = (book.id || '').replace(/[^A-Za-z0-9]/g, '');
-  return olid ? `https://covers.openlibrary.org/b/olid/${olid}-${size}.jpg` : 'assets/logo.svg';
-}
-
 async function lookupBookData(book) {
-  const cacheKey = book.isbn || book.id || `${book.title}|${book.author || ''}`;
+  const cacheKey = book.isbn13 || book.isbn10 || book.isbn || book.id || `${book.title}|${book.author || ''}`;
   if (lookupCache.has(cacheKey)) return lookupCache.get(cacheKey);
 
-  const base = { title: book.title, author: book.author, cover: coverUrl(book, 'L') };
+  const base = { title: book.title, author: book.author };
   const titleQuery = book.lookupTitle || book.title || '';
   const authorQuery = book.author || '';
-  const query = book.isbn
-    ? `isbn:${encodeURIComponent(book.isbn)}`
+  const isbnQuery = book.isbn13 || book.isbn10 || book.isbn;
+  const query = isbnQuery
+    ? `isbn:${encodeURIComponent(isbnQuery)}`
     : `intitle:${encodeURIComponent(titleQuery)}${authorQuery ? `+inauthor:${encodeURIComponent(authorQuery)}` : ''}`;
   const googleUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=1&fields=items(volumeInfo(title,authors,description,imageLinks,industryIdentifiers))`;
 
@@ -120,7 +115,7 @@ async function lookupBookData(book) {
       const data = await res.json();
       if (data.items && data.items.length) {
         const volume = data.items[0].volumeInfo;
-        const normalizedIsbn = (book.isbn || '').replace(/[^0-9X]/gi, '');
+        const normalizedIsbn = (isbnQuery || '').replace(/[^0-9X]/gi, '');
         const identifiers = volume.industryIdentifiers || [];
         const isbnMatches = normalizedIsbn
           ? identifiers.some((id) => (id.identifier || '').replace(/[^0-9X]/gi, '') === normalizedIsbn)
@@ -134,10 +129,6 @@ async function lookupBookData(book) {
 
         if (isbnMatches || authorMatches) {
           if (volume.description) info.description = volume.description;
-          const cover = volume.imageLinks?.thumbnail || volume.imageLinks?.smallThumbnail;
-          if (cover) {
-            info.cover = cover.replace('http://', 'https://');
-          }
         }
       }
     }
@@ -145,9 +136,9 @@ async function lookupBookData(book) {
     console.warn('Book lookup failed', err);
   }
 
-  if (!info.description && book.isbn) {
+  if (!info.description && isbnQuery) {
     try {
-      const search = await fetch(`https://openlibrary.org/search.json?isbn=${encodeURIComponent(book.isbn)}`);
+      const search = await fetch(`https://openlibrary.org/search.json?isbn=${encodeURIComponent(isbnQuery)}`);
       if (search.ok) {
         const results = await search.json();
         if (results.docs && results.docs.length && results.docs[0].key) {
@@ -304,15 +295,15 @@ function closeModal() {
 
 async function openBookModal(book) {
   ensureModal();
-  const cacheKey = book.isbn || book.id || book.title;
+  const cacheKey = book.isbn13 || book.isbn10 || book.isbn || book.id || book.title;
   const merged = detailCache.has(cacheKey)
     ? detailCache.get(cacheKey)
-    : { ...book, cover: coverUrl(book, 'L') };
+    : { ...book, cover: book.cover || PLACEHOLDER_COVER };
 
   modalTitle.textContent = merged.title;
   modalAuthor.textContent = merged.author || '';
 
-  modalCover.src = merged.cover;
+  modalCover.src = merged.cover || PLACEHOLDER_COVER;
   modalCover.alt = `${merged.title} cover`;
   modalRatings.innerHTML = '';
 
@@ -331,7 +322,11 @@ async function openBookModal(book) {
   modalReadMore.hidden = !hasMore;
   modalReadMore.textContent = hasMore ? '…read more' : '';
 
-  modalCover.src = hydrated.cover || coverUrl(book, 'L');
+  modalCover.onerror = () => {
+    modalCover.onerror = null;
+    modalCover.src = PLACEHOLDER_COVER;
+  };
+  modalCover.src = hydrated.cover || PLACEHOLDER_COVER;
 
   const grRating = await fetchGoodreadsRating(book);
   const wkRating =
@@ -385,15 +380,10 @@ function renderBooks(grid, books) {
     cover.className = 'cover';
     cover.alt = `${book.title} cover`;
     cover.loading = 'lazy';
-    cover.src = coverUrl(book, 'M');
-    cover.onerror = async () => {
+    cover.src = book.cover || PLACEHOLDER_COVER;
+    cover.onerror = () => {
       cover.onerror = null;
-      const lookedUp = await lookupBookData(book);
-      if (lookedUp.cover && lookedUp.cover !== cover.src) {
-        cover.src = lookedUp.cover;
-        return;
-      }
-      cover.src = 'assets/logo.svg';
+      cover.src = PLACEHOLDER_COVER;
       cover.style.objectFit = 'contain';
       cover.style.background = '#fff';
     };
